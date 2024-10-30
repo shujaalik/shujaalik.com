@@ -4,8 +4,9 @@
 @tailwind utilities;
 
 :root {
-  --background: #DFF2EB;
+  --background: #dff2ebc7;
   --text-primary: #0B192C;
+  --link-hover: #4A628A
 }
 
 
@@ -13,27 +14,21 @@ body {
   color: var(--text-primary);
   background: var(--background);
   font-family: "Amiri", "Poppins";
+  overflow-x: hidden;
 }
-html, body, html *, body * {
-  cursor: none;
+
+::-webkit-scrollbar {
+  width: 10px;
 }
-.cursor-dot, .cursor-dot-outline {
-  pointer-events: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border-radius: 50%;
-  opacity: 0;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+
+::-webkit-scrollbar-track {
+  background: #b9e5e8;
 }
-.cursor-dot {
-  width: 8px;
-  height: 8px;
-  background-color: #B9E5E8;
+
+::-webkit-scrollbar-thumb {
+  background: #4a628a;
 }
-.cursor-dot-outline {
-  width: 40px;
-  height: 40px;
-  background-color: #4A628A;
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4a628a;
 }

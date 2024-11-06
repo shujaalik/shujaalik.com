@@ -1,17 +1,30 @@
+import Image from "next/image"
 import Link from "next/link"
 import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa"
+import LogoImage from "@/lib/logo.png"
 
 const Navbar = () => {
   return <div className="h-36 w-full flex flex-row justify-around items-center">
-    <Link className="font-poppins text-sm hover:text-link-hover" href="mailto:me@shujaalik.com" target="_blank">me@shujaalik.com</Link>
-    <p className="font-poppins font-bold">ShujaAliK</p>
     <Socials />
+    <Logo />
+    <Email />
+  </div>
+}
+
+const Email = () => {
+  return <Link className="transition-all ease-linear duration-300 font-poppins text-sm font-medium opacity-90 hover:text-link-hover" href="mailto:me@shujaalik.com" target="_blank">me@shujaalik.com</Link>
+}
+
+const Logo = () => {
+  return <div className="m-3">
+    <Image className="h-auto w-20" alt={"Logo"} src={LogoImage} />
   </div>
 }
 
 const Socials = () => {
 
-  return <div className="flex flex-row justify-around items-center gap-3 text-3xl">
+  return <div className="hidden flex-row justify-around items-center gap-3 text-3xl
+  md:flex">
     <SocialLink link="https://www.instagram.com/shujaalik">
       <FaInstagram />
     </SocialLink>
@@ -37,3 +50,8 @@ const SocialLink = ({
 }
 
 export default Navbar
+
+export {
+  Email,
+  Socials
+}

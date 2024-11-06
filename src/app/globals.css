@@ -4,9 +4,15 @@
 @tailwind utilities;
 
 :root {
-  --background: #dff2ebc7;
+  --primary-one: #DFF2EB;
+  --primary-two: #B9E5E8;
+  --primary-three: #7AB2D3;
+  --primary-four: #4A628A;
+
+
+  --background: #dff2eb52;
   --text-primary: #0B192C;
-  --link-hover: #4A628A
+  --link-hover: var(--primary-four)
 }
 
 

@@ -8,10 +8,18 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        sm: "670px"
+      },
       fontFamily: {
         'poppins': ['Poppins', 'sans-serif'],
+        "amiri": ["Amiri", "sans-serif"]
       },
       colors: {
+        "primary-one": "var(--primary-one)",
+        "primary-two": "var(--primary-two)",
+        "primary-three": "var(--primary-three)",
+        "primary-four": "var(--primary-four)",
         background: "var(--background)",
         foreground: "var(--foreground)",
         'link-hover': "var(--link-hover)",

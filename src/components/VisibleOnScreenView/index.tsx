@@ -20,7 +20,7 @@ const VisibleOnScreenView = ({
                 innerHeight += VISIBILITY_PADDING;
                 const { top, bottom } = rect;
                 // check if in view with a little bit of padding
-                if (bottom < innerHeight && top < innerHeight) {
+                if (bottom < innerHeight && top < innerHeight && bottom > 0) {
                     ref.current?.style.setProperty("opacity", "1");
                 }
                 else {

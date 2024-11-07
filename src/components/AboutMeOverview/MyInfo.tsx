@@ -10,7 +10,7 @@ const MyInfo = () => {
 }
 
 const RightRow = () => {
-    return <div className={`font-poppins flex flex-col items-center gap-5 justify-center text-center sm:items-end sm:text-right w-1/2`}>
+    return <div className={`font-poppins flex flex-col items-center gap-20 justify-center text-center sm:items-end sm:text-right w-1/2`}>
         <Item position="right" title="years of experience">
             <p className="font-bold text-6xl">4+</p>
         </Item>
@@ -24,14 +24,13 @@ const RightRow = () => {
 }
 
 const LeftRow = () => {
-    return <div className={`font-poppins flex flex-col items-center gap-5 justify-center text-center sm:items-start sm:text-left w-1/2`}>
+    return <div className={`font-poppins flex flex-col items-center gap-20 justify-center text-center sm:items-start sm:text-left w-1/2`}>
         <Item position="left" title="biography">
             <p>{"A versatile full-stack developer specializing in building robust web applications."}</p>
         </Item>
         <Item position="left" title="contact">
             <div className="flex flex-col gap-1">
                 <Link className="transition-all ease-linear duration-300 hover:text-link-hover" target="_blank" href="mailto:me@shujaalik.com">me@shujaalik.com</Link>
-                <Link className="transition-all ease-linear duration-300 hover:text-link-hover" target="_blank" href="https://api.whatsapp.com/send?phone=923316074329">+92 331 6074329</Link>
             </div>
         </Item>
         <Item position="left" title="services">

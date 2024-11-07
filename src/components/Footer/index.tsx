@@ -1,9 +1,9 @@
-import VisibleOnScreenView from "../VisibleOnScreenView"
-import { Email, Socials } from "../Navbar"
+import VisibleOnScreenView from "../VisibleOnScreenView";
+import { Email, Socials } from "../Navbar";
 
 const Footer = () => {
     return <VisibleOnScreenView>
-        <div className="flex justify-around items-center w-screen py-10 border-t-2">
+        <div className="flex flex-col justify-around items-center w-screen py-10 border-t-2 sm:flex-row">
             <Copyright />
             <Email />
             <Socials />

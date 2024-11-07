@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useRef } from "react";
 
-const VISIBILITY_PADDING = 0;
+const VISIBILITY_PADDING = 100;
 
 const VisibleOnScreenView = ({
     children
@@ -16,8 +16,11 @@ const VisibleOnScreenView = ({
         const checkIfInView = () => {
             const rect = ref.current?.getBoundingClientRect();
             if (rect) {
+                let { innerHeight } = window
+                innerHeight += VISIBILITY_PADDING;
+                const { top, bottom } = rect;
                 // check if in view with a little bit of padding
-                if (rect.top < window.innerHeight - VISIBILITY_PADDING && rect.bottom > VISIBILITY_PADDING) {
+                if (bottom < innerHeight && top < innerHeight) {
                     ref.current?.style.setProperty("opacity", "1");
                 }
                 else {

@@ -2,13 +2,16 @@ import Image from "next/image"
 import Link from "next/link"
 import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa"
 import LogoImage from "@/lib/logo.png"
+import VisibleOnScreenView from "../VisibleOnScreenView"
 
 const Navbar = () => {
-  return <div className="h-36 w-full flex flex-row justify-around items-center">
-    <Socials />
-    <Logo />
-    <Email />
-  </div>
+  return <VisibleOnScreenView>
+    <div className="h-36 w-full flex flex-row justify-around items-center">
+      <Socials />
+      <Logo />
+      <Email />
+    </div>
+  </VisibleOnScreenView>
 }
 
 const Email = () => {

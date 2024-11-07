@@ -21,6 +21,12 @@ body {
   background: var(--background);
   font-family: "Amiri", "Poppins";
   overflow-x: hidden;
+
+  /* disallow selection */
+  user-select: none;
+}
+img{
+  -webkit-user-drag: none;
 }
 
 ::-webkit-scrollbar {

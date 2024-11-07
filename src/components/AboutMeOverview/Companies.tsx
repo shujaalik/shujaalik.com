@@ -7,12 +7,14 @@ import kis from "@/lib/kis-logo.png"
 import shopsqual from "@/lib/shopsqual-full-dark.png"
 
 const Companies = () => {
-    return <div className="py-36 w-screen items-center gap-5 grid grid-cols-2 lg:gap-16 lg:grid-cols-3 xl:grid-flow-col columns-auto px-2 sm:px-10 xl:px-36">
-        <Item img={KunjiSoft} />
-        <Item img={IPMR} />
-        <Item img={plastisol} />
-        <Item img={kis} />
-        <Item img={shopsqual} />
+    return <div className="w-screen flex justify-center items-center">
+        <div className="py-20 w-fit items-center gap-5 grid grid-cols-2 lg:gap-16 lg:grid-cols-3 xl:grid-flow-col columns-auto border-b-2">
+            <Item img={KunjiSoft} />
+            <Item img={IPMR} />
+            <Item img={plastisol} />
+            <Item img={kis} />
+            <Item img={shopsqual} />
+        </div>
     </div>
 }
 

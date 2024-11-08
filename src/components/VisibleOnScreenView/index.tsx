@@ -5,10 +5,12 @@ const VISIBILITY_PADDING = 100;
 
 const VisibleOnScreenView = ({
     children,
-    vidibilityPadding = VISIBILITY_PADDING
+    vidibilityPadding = VISIBILITY_PADDING,
+    debug = false
 }: {
     children: JSX.Element | JSX.Element[],
-    vidibilityPadding?: number
+    vidibilityPadding?: number,
+    debug?: boolean
 }) => {
     const ref = useRef<HTMLDivElement>(null);
 
@@ -22,7 +24,10 @@ const VisibleOnScreenView = ({
                 innerHeight += vidibilityPadding;
                 const { top, bottom } = rect;
                 // check if in view with a little bit of padding
-                if (bottom < innerHeight && top < innerHeight && bottom > 0) {
+                if (debug) {
+                    console.log("top", top, "bottom", bottom, "innerHeight", innerHeight);
+                }
+                if ((bottom < innerHeight || top < innerHeight) && bottom > 0) {
                     ref.current?.style.setProperty("opacity", "1");
                 }
                 else {
@@ -33,12 +38,13 @@ const VisibleOnScreenView = ({
 
         // check if element is in view
         document.addEventListener("scroll", checkIfInView);
+        checkIfInView();
 
         return () => {
             // cleanup
             document.removeEventListener("scroll", checkIfInView);
         }
-    }, [vidibilityPadding]);
+    }, [vidibilityPadding, debug]);
 
     return <div ref={ref} className="transition-all ease-linear duration-500">
         {children}

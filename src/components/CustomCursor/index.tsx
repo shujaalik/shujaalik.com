@@ -21,6 +21,8 @@ const CustomCursor = () => {
                 // Set up element sizes
                 this.dotSize = this.$dot.offsetWidth;
                 this.outlineSize = this.$outline.offsetWidth;
+                // check if touch device, if so dont init
+                if (window.matchMedia('(pointer: coarse)').matches) return;
 
                 this.setupEventListeners();
                 this.animateDotOutline();

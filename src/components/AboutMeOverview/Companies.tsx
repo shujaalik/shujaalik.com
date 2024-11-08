@@ -25,7 +25,7 @@ const Item = ({
 }: {
     img: StaticImport
 }) => {
-    return <div className="flex items-center justify-center">
+    return <div className="flex items-center justify-center m-auto">
         <Image className="m-5 w-auto max-h-20 sm:max-w-36 grayscale transition ease-linear duration-300 opacity-50 hover:grayscale-0 hover:opacity-100" alt="comapny" src={img} />
     </div>
 }

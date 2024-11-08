@@ -4,9 +4,11 @@ import { useEffect, useRef } from "react";
 const VISIBILITY_PADDING = 100;
 
 const VisibleOnScreenView = ({
-    children
+    children,
+    vidibilityPadding = VISIBILITY_PADDING
 }: {
-    children: JSX.Element | JSX.Element[]
+    children: JSX.Element | JSX.Element[],
+    vidibilityPadding?: number
 }) => {
     const ref = useRef<HTMLDivElement>(null);
 
@@ -17,7 +19,7 @@ const VisibleOnScreenView = ({
             const rect = ref.current?.getBoundingClientRect();
             if (rect) {
                 let { innerHeight } = window
-                innerHeight += VISIBILITY_PADDING;
+                innerHeight += vidibilityPadding;
                 const { top, bottom } = rect;
                 // check if in view with a little bit of padding
                 if (bottom < innerHeight && top < innerHeight && bottom > 0) {
@@ -36,9 +38,9 @@ const VisibleOnScreenView = ({
             // cleanup
             document.removeEventListener("scroll", checkIfInView);
         }
-    }, []);
+    }, [vidibilityPadding]);
 
-    return <div ref={ref} className="transition-all ease-linear duration-700">
+    return <div ref={ref} className="transition-all ease-linear duration-500">
         {children}
     </div>
 }

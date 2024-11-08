@@ -13,7 +13,7 @@ import { LiaHackerrank } from "react-icons/lia";
 
 const Certification = () => {
 
-    return <VisibleOnScreenView>
+    return <VisibleOnScreenView vidibilityPadding={400}>
         <div className="py-20 w-screen">
             <p className="font-amiri text-5xl text-center">Certification</p>
             <div className="pt-10 flex flex-row justify-start items-center gap-10 flex-wrap px-2 sm:px-10 xl:px-36">

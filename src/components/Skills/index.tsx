@@ -3,12 +3,14 @@ import { BiLogoTypescript } from "react-icons/bi"
 import { FaGitAlt, FaHtml5, FaJsSquare, FaNodeJs, FaPython, FaReact } from "react-icons/fa"
 import { PiGhostBold } from "react-icons/pi"
 import { RiNextjsLine } from "react-icons/ri"
-import { SiAntdesign, SiArduino, SiChakraui, SiCss3, SiCurl, SiDocker, SiEclipsemosquitto, SiEspressif, SiExpress, SiFirebase, SiGithubactions, SiGooglecloud, SiMicropython, SiRedux, SiServerless, SiTailwindcss } from "react-icons/si"
+import { SiAntdesign, SiArduino, SiChakraui, SiCss3, SiCurl, SiDocker, SiEclipsemosquitto, SiEspressif, SiExpress, SiFirebase, SiGithubactions, SiGooglecloud, SiMicropython, SiMysql, SiRedux, SiServerless, SiTailwindcss } from "react-icons/si"
 import VisibleOnScreenView from "../VisibleOnScreenView"
 
 const Skills = () => {
-    return <div className="py-20">
-        <p className="font-amiri text-5xl text-center">My Skills</p>
+    return <div className="py-20 border-b-2">
+        <VisibleOnScreenView>
+            <p className="font-amiri text-5xl text-center">My Skills</p>
+        </VisibleOnScreenView>
         <div className="pt-10 flex flex-col gap-14 px-2 sm:px-10 xl:px-36">
             <VisibleOnScreenView>
                 <Frontend />
@@ -54,6 +56,7 @@ const Backend = () => {
             <Skill name="REST API" Icon={SiCurl} />
             <Skill name="Firebase" Icon={SiFirebase} />
             <Skill name="Python" Icon={FaPython} />
+            <Skill name="MySQL" Icon={SiMysql} />
         </div>
     </div>
 }

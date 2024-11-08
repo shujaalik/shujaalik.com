@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa"
-import LogoImage from "@/lib/logo.png"
+import LogoImage from "@/imgs/site/logo.png"
 import VisibleOnScreenView from "../VisibleOnScreenView"
 
 const Navbar = () => {

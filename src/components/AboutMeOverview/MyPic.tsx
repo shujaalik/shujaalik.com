@@ -1,5 +1,5 @@
 import Image from "next/image"
-import ShujaPic from "@/lib/me.png"
+import ShujaPic from "@/imgs/site/me.png"
 
 const MyPic = () => {
     return <div className="flex justify-center items-center max-w-xl bg-primary-one rounded-full">

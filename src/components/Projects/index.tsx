@@ -15,7 +15,6 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
 
 
 const Projects = () => {
@@ -24,11 +23,7 @@ const Projects = () => {
             <p className="font-amiri text-5xl text-center">Projects</p>
         </VisibleOnScreenView>
         <div className="pt-10 flex flex-col gap-14 lg:w-[80vw] px-2 sm:px-10 xl:px-36">
-            <Carousel plugins={[
-                Autoplay({
-                    delay: 5000,
-                }),
-            ]} className="w-full">
+            <Carousel className="w-full">
                 <CarouselContent>
                     <CarouselItem>
                         <Project

@@ -11,7 +11,7 @@ const Project = ({
     title: string,
     description: JSX.Element,
     img: StaticImageData,
-    website: string,
+    website?: string,
     github?: string,
     stats: {
         title: string,
@@ -22,7 +22,7 @@ const Project = ({
         <div className="flex gap-5 flex-col w-full lg:w-1/2">
             <h1 className="text-4xl font-bold text-primary-four">{title}</h1>
             <div className="flex justify-start items-center gap-3">
-                <p className="flex justify-center items-center gap-3 w-min underline font-medium"><TbWorld /> <a href={website} target="_blank">Website</a></p>
+                {website && <p className="flex justify-center items-center gap-3 w-min underline font-medium"><TbWorld /> <a href={website} target="_blank">Website</a></p>}
                 {github && <p className="flex justify-center items-center gap-3 w-min underline font-medium"><TbWorld /> <a href={github} target="_blank">Github</a></p>}
             </div>
             <p>{description}</p>

@@ -22,7 +22,7 @@ const CustomCursor = () => {
                 this.dotSize = this.$dot.offsetWidth;
                 this.outlineSize = this.$outline.offsetWidth;
                 // check if touch device, if so dont init
-                if (window.matchMedia('(pointer: coarse)').matches) return;
+                // if (window.matchMedia('(pointer: coarse)').matches) return;
 
                 this.setupEventListeners();
                 this.animateDotOutline();
@@ -113,7 +113,6 @@ const CustomCursor = () => {
                 }
             }
         }
-
         cursor.init();
     }, []);
 

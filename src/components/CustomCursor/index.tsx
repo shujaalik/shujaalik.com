@@ -2,6 +2,11 @@
 import { useEffect } from "react"
 import "./styles.css"
 
+function is_touch_enabled() {
+    return ('ontouchstart' in window) ||
+        (navigator.maxTouchPoints > 0);
+}
+
 const CustomCursor = () => {
     useEffect(() => {
         const cursor = {
@@ -22,6 +27,7 @@ const CustomCursor = () => {
                 this.dotSize = this.$dot.offsetWidth;
                 this.outlineSize = this.$outline.offsetWidth;
                 // check if touch device, if so dont init
+                if (is_touch_enabled()) return;
                 // if (window.matchMedia('(pointer: coarse)').matches) return;
 
                 this.setupEventListeners();

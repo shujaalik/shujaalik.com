@@ -12,10 +12,10 @@ const MyInfo = () => {
 const RightRow = () => {
     return <div className={`font-poppins flex flex-col items-center gap-20 justify-center text-center sm:items-end sm:text-right w-1/2`}>
         <Item position="right" title="years of experience">
-            <p className="font-bold text-6xl">4+</p>
+            <p className="font-bold text-6xl">5+</p>
         </Item>
         <Item position="right" title="projects completed">
-            <p className="font-bold text-6xl">20+</p>
+            <p className="font-bold text-6xl">25+</p>
         </Item>
         <Item position="right" title="client satisfaction">
             <p className="font-bold text-6xl">100%</p>
@@ -35,8 +35,9 @@ const LeftRow = () => {
         </Item>
         <Item position="left" title="services">
             <p>{"Saas Development"}</p>
-            <p>{"IoT Programming"}</p>
+            <p>{"IoT & Embedded Development"}</p>
             <p>{"Full-Stack Development"}</p>
+            <p>{"Cloud Infrastructure & DevOps"}</p>
         </Item>
     </div>
 }

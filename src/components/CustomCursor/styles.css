@@ -1,12 +1,15 @@
-html,
-body,
-html *,
-body * {
-  cursor: none;
+/* Only hide the default cursor when the custom cursor is actively driven by mouse */
+html.has-custom-cursor,
+html.has-custom-cursor body,
+html.has-custom-cursor *,
+html.has-custom-cursor *::before,
+html.has-custom-cursor *::after {
+  cursor: none !important;
 }
+
 .cursor-dot,
 .cursor-dot-outline {
-  z-index: 9;
+  z-index: 9999;
   pointer-events: none;
   position: absolute;
   top: 50%;
@@ -14,15 +17,17 @@ body * {
   border-radius: 50%;
   opacity: 0;
   transform: translate(-50%, -50%);
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
+
 .cursor-dot {
   width: 8px;
   height: 8px;
   background-color: #7ab2d3;
 }
+
 .cursor-dot-outline {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   background-color: #4a618a41;
 }

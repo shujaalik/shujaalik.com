@@ -2,103 +2,134 @@
 import { useEffect } from "react"
 import "./styles.css"
 
-function is_touch_enabled() {
-    return ('ontouchstart' in window) ||
-        (navigator.maxTouchPoints > 0);
-}
-
 const CustomCursor = () => {
     useEffect(() => {
+        let isActivated = false;
+        let animationFrameId: number;
+
         const cursor = {
             delay: 8,
-            _x: 0,
-            _y: 0,
-            endX: (window.innerWidth / 2),
-            endY: (window.innerHeight / 2),
-            cursorVisible: true,
+            _x: window.innerWidth / 2,
+            _y: window.innerHeight / 2,
+            endX: window.innerWidth / 2,
+            endY: window.innerHeight / 2,
+            cursorVisible: false,
             cursorEnlarged: false,
-            $dot: document.querySelector('.cursor-dot')! as HTMLElement,
-            $outline: document.querySelector('.cursor-dot-outline')! as HTMLElement,
-            dotSize: 0,
-            outlineSize: 0,
+            $dot: document.querySelector('.cursor-dot') as HTMLElement | null,
+            $outline: document.querySelector('.cursor-dot-outline') as HTMLElement | null,
 
             init: function () {
-                // Set up element sizes
-                this.dotSize = this.$dot.offsetWidth;
-                this.outlineSize = this.$outline.offsetWidth;
-                // check if touch device, if so dont init
-                if (is_touch_enabled()) return;
-                // if (window.matchMedia('(pointer: coarse)').matches) return;
+                if (!this.$dot || !this.$outline) return;
 
-                this.setupEventListeners();
-                this.animateDotOutline();
-            },
+                const onPointerMove = (e: PointerEvent) => {
+                    // Ignore pure touch events on touch laptops so touch taps aren't intercepted
+                    if (e.pointerType === 'touch') {
+                        this.cursorVisible = false;
+                        this.toggleCursorVisibility();
+                        document.documentElement.classList.remove('has-custom-cursor');
+                        return;
+                    }
 
-            setupEventListeners: function () {
+                    // Enable custom cursor mode on mouse/pen movement
+                    if (!isActivated) {
+                        isActivated = true;
+                        document.documentElement.classList.add('has-custom-cursor');
+                        this.animateDotOutline();
+                    }
 
-                // Anchor hovering
-                document.querySelectorAll('a').forEach(el => {
-                    el.addEventListener('mouseover', () => {
-                        this.cursorEnlarged = true;
-                        this.toggleCursorSize();
-                    });
-                    el.addEventListener('mouseout', () => {
-                        this.cursorEnlarged = false;
-                        this.toggleCursorSize();
-                    });
-                });
-
-                // Click events
-                document.addEventListener('mousedown', () => {
-                    this.cursorEnlarged = true;
-                    this.toggleCursorSize();
-                });
-                document.addEventListener('mouseup', () => {
-                    this.cursorEnlarged = false;
-                    this.toggleCursorSize();
-                });
-
-
-                document.addEventListener('mousemove', (e) => {
-                    // Show the cursor
                     this.cursorVisible = true;
                     this.toggleCursorVisibility();
 
-                    // Position the dot
                     this.endX = e.pageX;
                     this.endY = e.pageY;
-                    this.$dot.style.top = this.endY + 'px';
-                    this.$dot.style.left = this.endX + 'px';
-                });
+                    if (this.$dot) {
+                        this.$dot.style.top = this.endY + 'px';
+                        this.$dot.style.left = this.endX + 'px';
+                    }
+                };
 
-                // Hide/show cursor
-                document.addEventListener('mouseenter', () => {
-                    this.cursorVisible = true;
+                const onTouchStart = () => {
+                    // If user touches the screen, hide custom cursor and restore native touch behavior
+                    this.cursorVisible = false;
                     this.toggleCursorVisibility();
-                    this.$dot.style.opacity = "1";
-                    this.$outline.style.opacity = "1";
-                });
+                    document.documentElement.classList.remove('has-custom-cursor');
+                };
 
-                document.addEventListener('mouseleave', () => {
-                    this.cursorVisible = true;
+                const onMouseDown = () => {
+                    this.cursorEnlarged = true;
+                    this.toggleCursorSize();
+                };
+
+                const onMouseUp = () => {
+                    this.cursorEnlarged = false;
+                    this.toggleCursorSize();
+                };
+
+                const onMouseLeave = () => {
+                    this.cursorVisible = false;
                     this.toggleCursorVisibility();
-                    this.$dot.style.opacity = "0";
-                    this.$outline.style.opacity = "0";
-                });
+                };
+
+                const onMouseEnter = () => {
+                    if (isActivated) {
+                        this.cursorVisible = true;
+                        this.toggleCursorVisibility();
+                    }
+                };
+
+                // Add interactive hover listeners for links and buttons
+                const onMouseOver = (e: MouseEvent) => {
+                    const target = e.target as HTMLElement | null;
+                    if (target?.closest('a, button, [role="button"], input, select, textarea')) {
+                        this.cursorEnlarged = true;
+                        this.toggleCursorSize();
+                    }
+                };
+
+                const onMouseOut = (e: MouseEvent) => {
+                    const target = e.target as HTMLElement | null;
+                    if (target?.closest('a, button, [role="button"], input, select, textarea')) {
+                        this.cursorEnlarged = false;
+                        this.toggleCursorSize();
+                    }
+                };
+
+                window.addEventListener('pointermove', onPointerMove, { passive: true });
+                window.addEventListener('touchstart', onTouchStart, { passive: true });
+                document.addEventListener('mousedown', onMouseDown);
+                document.addEventListener('mouseup', onMouseUp);
+                document.addEventListener('mouseover', onMouseOver);
+                document.addEventListener('mouseout', onMouseOut);
+                document.addEventListener('mouseleave', onMouseLeave);
+                document.addEventListener('mouseenter', onMouseEnter);
+
+                return () => {
+                    window.removeEventListener('pointermove', onPointerMove);
+                    window.removeEventListener('touchstart', onTouchStart);
+                    document.removeEventListener('mousedown', onMouseDown);
+                    document.removeEventListener('mouseup', onMouseUp);
+                    document.removeEventListener('mouseover', onMouseOver);
+                    document.removeEventListener('mouseout', onMouseOut);
+                    document.removeEventListener('mouseleave', onMouseLeave);
+                    document.removeEventListener('mouseenter', onMouseEnter);
+                    if (animationFrameId) cancelAnimationFrame(animationFrameId);
+                    document.documentElement.classList.remove('has-custom-cursor');
+                };
             },
 
             animateDotOutline: function () {
-
                 this._x += (this.endX - this._x) / this.delay;
                 this._y += (this.endY - this._y) / this.delay;
-                this.$outline.style.top = this._y + 'px';
-                this.$outline.style.left = this._x + 'px';
+                if (this.$outline) {
+                    this.$outline.style.top = this._y + 'px';
+                    this.$outline.style.left = this._x + 'px';
+                }
 
-                requestAnimationFrame(this.animateDotOutline.bind(this));
+                animationFrameId = requestAnimationFrame(this.animateDotOutline.bind(this));
             },
 
             toggleCursorSize: function () {
-
+                if (!this.$dot || !this.$outline) return;
                 if (this.cursorEnlarged) {
                     this.$dot.style.transform = 'translate(-50%, -50%) scale(0.75)';
                     this.$outline.style.transform = 'translate(-50%, -50%) scale(1.5)';
@@ -109,23 +140,25 @@ const CustomCursor = () => {
             },
 
             toggleCursorVisibility: function () {
-
-                if (this.cursorVisible) {
-                    this.$dot.style.opacity = "1";
-                    this.$outline.style.opacity = "1";
-                } else {
-                    this.$dot.style.opacity = "0";
-                    this.$outline.style.opacity = "0";
-                }
+                if (!this.$dot || !this.$outline) return;
+                const opacity = this.cursorVisible ? '1' : '0';
+                this.$dot.style.opacity = opacity;
+                this.$outline.style.opacity = opacity;
             }
-        }
-        cursor.init();
+        };
+
+        const cleanup = cursor.init();
+        return () => {
+            if (cleanup) cleanup();
+        };
     }, []);
 
-    return <>
-        <div className="cursor-dot-outline"></div>
-        <div className="cursor-dot"></div>
-    </>
-}
+    return (
+        <>
+            <div className="cursor-dot-outline" aria-hidden="true"></div>
+            <div className="cursor-dot" aria-hidden="true"></div>
+        </>
+    );
+};
 
-export default CustomCursor
+export default CustomCursor;

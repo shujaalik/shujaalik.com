@@ -26,7 +26,7 @@ const RightRow = () => {
 const LeftRow = () => {
     return <div className={`font-poppins flex flex-col items-center gap-20 justify-center text-center sm:items-start sm:text-left w-1/2`}>
         <Item position="left" title="biography">
-            <p>{"A versatile full-stack developer specializing in building robust web applications."}</p>
+            <p>{"Architecting end-to-end industrial IoT solutions—from high-reliability edge firmware to high-throughput time-series backends and real-time telemetry dashboards."}</p>
         </Item>
         <Item position="left" title="contact">
             <div className="flex flex-col gap-1">
@@ -34,10 +34,10 @@ const LeftRow = () => {
             </div>
         </Item>
         <Item position="left" title="services">
-            <p>{"Saas Development"}</p>
-            <p>{"IoT & Embedded Development"}</p>
-            <p>{"Full-Stack Development"}</p>
-            <p>{"Cloud Infrastructure & DevOps"}</p>
+            <p>{"Industrial IoT & Edge Firmware"}</p>
+            <p>{"Time-Series & Telemetry Backends"}</p>
+            <p>{"Real-Time Telemetry Dashboards"}</p>
+            <p>{"Embedded Firmware & Control Systems"}</p>
         </Item>
     </div>
 }

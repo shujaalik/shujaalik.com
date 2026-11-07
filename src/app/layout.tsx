@@ -5,21 +5,25 @@ import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
-  title: "Shuja Ali Kunji | IoT Specialist & Tech Innovator",
-  description: "A versatile full-stack developer specializing in building robust web applications.",
+  title: "Muhammad Shuja Ali | Systems Architect & Lead IoT / Full-Stack Engineer",
+  description: "Architecting end-to-end industrial IoT solutions—from high-reliability edge firmware (FreeRTOS, ESP-IDF, Modbus RTU) to high-throughput time-series backends and real-time telemetry dashboards. Powering 300+ industrial machines across tier-1 manufacturing facilities.",
   keywords: [
-    "web development",
-    "full-stack",
-    "IoT",
-    "shuja",
-    "ali",
+    "Systems Architect",
+    "IoT Engineer",
+    "Embedded Systems",
+    "FreeRTOS",
+    "ESP-IDF",
+    "Modbus RTU",
+    "TimescaleDB",
+    "Full-Stack Developer",
+    "IIoT",
+    "industrialpmr",
     "shuja ali kunji",
     "shuja ali",
-    "kunji",
-    "muhammad shuja ali",
-    "tech innovator"],
+    "muhammad shuja ali"
+  ],
   authors: [{
-    name: "Shuja Ali Kunji",
+    name: "Muhammad Shuja Ali",
     url: "mailto:me@shujaalik.com"
   }],
   icons: ["/logo.png"]

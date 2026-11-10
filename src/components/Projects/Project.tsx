@@ -14,7 +14,7 @@ const Project = ({
 }: {
     title: string,
     tag?: string,
-    description: JSX.Element,
+    description: React.ReactNode,
     architectureHighlights?: {
         label: string,
         detail: string

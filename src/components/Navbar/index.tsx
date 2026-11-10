@@ -58,7 +58,7 @@ const SocialLink = ({
   children
 }: {
   link: string,
-  children: JSX.Element
+  children: React.ReactNode
 }) => {
   return <Link href={link} target="_blank" className="hover:-translate-y-1 hover:text-link-hover ease-linear duration-100">
     {children}

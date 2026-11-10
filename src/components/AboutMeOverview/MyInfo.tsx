@@ -49,7 +49,7 @@ const Item = ({
 }: {
     title: string,
     position: "left" | "right",
-    children?: JSX.Element | JSX.Element[]
+    children?: React.ReactNode
 }) => {
     return <VisibleOnScreenView>
         <div className={`gap-6 flex flex-col w-full items-center sm:items-${position === "left" ? "start" : "end"}`}>

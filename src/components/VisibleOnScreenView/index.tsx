@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 const VISIBILITY_PADDING = 100;
 
@@ -8,7 +8,7 @@ const VisibleOnScreenView = ({
     vidibilityPadding = VISIBILITY_PADDING,
     debug = false
 }: {
-    children: JSX.Element | JSX.Element[],
+    children: React.ReactNode,
     vidibilityPadding?: number,
     debug?: boolean
 }) => {
